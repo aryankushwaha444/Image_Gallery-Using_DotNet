@@ -1,0 +1,31 @@
+@model ImageGallery.Models.ImageModel
+
+<h2>Edit Image</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="Title">Title</label>
+        <input type="text" class="form-control" id="Title" name="Title" value="@Model.Title" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <textarea class="form-control" id="Description" name="Description" required>@Model.Description</textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="ImageFile">Image</label>
+
+        <!-- Display the current image if available -->
+        @if (!string.IsNullOrEmpty(Model.Url))
+        {
+            <div>
+                <img src="@Model.Url" alt="Current Image" style="width: 100px; height: auto;" />
+            </div>
+            <p>Current Image</p>
+        }
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
